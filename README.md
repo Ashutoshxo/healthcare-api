@@ -39,7 +39,7 @@ Update Database Credentials (.env)
 DB_DATABASE=healthcare
 DB_USERNAME=root
 DB_PASSWORD=root
-that was mein but replace it your 
+Update Database Credentials in `.env` as per your local setup
 
 Run Migrations
 
