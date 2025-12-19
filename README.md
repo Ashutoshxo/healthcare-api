@@ -2,6 +2,7 @@
 
 ## Objective
 Build a RESTful API to manage Patients and Appointments with proper validation, business rules.
+API requests and responses are documented in this README and were tested using Postman.
 
 ---
 
