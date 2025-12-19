@@ -6,13 +6,18 @@ Build a RESTful API to manage Patients and Appointments with proper validation, 
 ---
 
 ## Tech Stack
-- PHP 8+
-- Laravel 12
-- MySQL
-- Eloquent ORM
-- REST API (JSON responses)
+- Tech Stack
 
----
+PHP: 8.x
+Laravel: 12.x
+Database: MySQL
+ORM: Eloquent
+API Type: REST (JSON responses)
+API Testing: Postman
+
+### Project Details
+Time Taken: 6–8 hours
+
 
 ##  Setup Instructions
 
@@ -22,7 +27,7 @@ git clone https://github.com/Ashutoshxo/healthcare-api.git
 cd healthcare-api
 composer install
 
-Environment Setup
+Environment Setup 
 
 cp .env.example .env
 php artisan key:generate
@@ -31,8 +36,9 @@ php artisan key:generate
 Update Database Credentials (.env)
 
 DB_DATABASE=healthcare
-DB_USERNAME=your_mysql_username
-DB_PASSWORD=your_mysql_password
+DB_USERNAME=root
+DB_PASSWORD=root
+that was mein but replace it your 
 
 Run Migrations
 
@@ -41,7 +47,7 @@ php artisan migrate
 and then start server 
 
 php artisan serve
-
+```
 
 🗄 Database Schema
 
@@ -57,7 +63,7 @@ Patients Table (patients)
 | updated_at | timestamp | Auto             |
 
 
-📅 Appointments Table (appointments)
+ Appointments Table (appointments)
 
 | Column           | Type      | Notes                          |
 | ---------------- | --------- | ------------------------------ |
@@ -72,18 +78,18 @@ Patients Table (patients)
 | created_at       | timestamp | Auto                           |
 | updated_at       | timestamp | Auto                           |
 
-🔗 Relationships
-
+ Relationships
+```bash 
 Patient has many Appointments
 
 Appointment belongs to Patient
 
-Unique constraint on
+Unique Constraint
+
 (patient_id, appointment_date, appointment_time)
 
-
-🔗 API Endpoints
-📌 Available Routes
+ API Endpoints
+ Available Routes
 POST    /api/patients
 GET     /api/patients
 GET     /api/patients/{id}
@@ -93,9 +99,9 @@ GET     /api/appointments
 PATCH   /api/appointments/{id}/status
 DELETE  /api/appointments/{id}
 
+ Patients API
+ Create Patient
 
-👤 Patients API
-Create Patient
 POST /api/patients
 
 {
@@ -104,15 +110,12 @@ POST /api/patients
   "email": "riya@gmail.com",
   "dob": "2001-02-12"
 }
-
-List Patients (Search + Pagination)
+ List Patients (Search + Pagination)
 GET /api/patients?search=9876&page=1
-
-Get Patient Details (latest 5 appointments)
+ Get Patient Details (Latest 5 Appointments)
 GET /api/patients/{id}
+ Appointments API Create Appointment
 
-📅 Appointments API
-Create Appointment
 POST /api/appointments
 
 {
@@ -124,40 +127,65 @@ POST /api/appointments
 }
 
 List Appointments (Filter + Pagination)
-
 GET /api/appointments?status=booked&date=2025-12-20&page=1
 
-Update Appointment Status
-PATCH /api/appointments/{id}/status
+ Update Appointment Status
 
+PATCH /api/appointments/{id}/status
 
 {
   "status": "completed"
 }
 
-Delete Appointment (Soft Delete)
+🗑 Delete Appointment (Soft Delete)
 DELETE /api/appointments/{id}
 
-
-Business Rules Implemented
+ Business Rules Implemented
 
 Appointments cannot be created in the past
-Duplicate appointment slot for same patient is not allowed
+
+Duplicate appointment slot for the same patient is not allowed
+
 Strong request validation using Form Request classes
 
-Proper HTTP status codes:
-201 Created
-422 Validation error
-404 Resource not found
 Secure mass assignment handling
+
 Soft deletes implemented for appointments
 
+Proper HTTP Status Codes
 
+201 Created
 
-API Testing
+422 Validation Error
+
+404 Resource Not Found
+
+  API Testing
 
 All endpoints tested using Postman
 
 JSON request bodies used
 
-Success and validation failure cases verified
+Both success and validation failure cases verified
+
+ Assumptions
+
+Authentication is not required as it was not part of the assignment scope
+
+Patient phone and email are unique identifiers
+
+Appointment status is limited to: booked, completed, cancelled
+
+One patient cannot book multiple appointments at the same date and time
+
+Soft delete is sufficient for appointment removal
+
+ Deliverables
+
+Complete Laravel source code
+
+Database migrations
+
+.env.example (no secrets included)
+
+REST API endpoints
